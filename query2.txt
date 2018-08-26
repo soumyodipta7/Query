@@ -1,0 +1,107 @@
+//ADD Experience
+db.demo.update({"userName":"dip95"},{$push: {"profile.experience": 
+        {$each: [ 
+            { "designation": "A3",  "companyName": "CTS","timePeriod":"2016-18"}]
+       }
+     }
+   }
+)
+
+//Pull Experience
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.experience": {"designation":"A3"} } },
+false,
+true 
+);
+
+//Update Experience -> designation
+db.demo.update( {"userName":"dip95","profile.experience.designation":"A3"},{$set:{"profile.experience.$.designation":"Manager"}},{"upsert":true});
+
+
+
+//ADD education
+db.demo.update({"userName":"dip95"},{$push: 
+{"profile.education": 
+        {$each: [ 
+            { "degreeName": "MS",  "university": "Harvard" ,"percentage":"82","yearOfPassing":"2022"}]
+       }
+     }
+   }
+)
+//Pull education based on DegreeName
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.education": {"degreeName":"M.Tech"} } },
+false,
+true 
+);
+
+
+
+
+//ADD Endorsements 
+db.demo.update({"userName":"dip95"},{$push: {"profile.endorsements": 
+        {$each: [ 
+            { "endorseBy": "SM",  "comment": "Excellent"}]
+       }
+     }
+   }
+)
+//Pull Endorsements based on name
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.endorsements": {"endorsedBy":"pbadala"} } },
+false,
+true 
+);
+
+
+//Pull certifications based on name
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.accomplishment.certifications": {"name":"PHP"} } },
+false,
+true 
+);
+
+//Pull awards based on name
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.accomplishment.awards": {"name":"Gold Medal"} } },
+false,
+true 
+);
+
+//Pull Publications based on name
+db.demo.update(
+    {"userName":"dip95"}, 
+    { $pull: { "profile.accomplishment.publications": {"name":"IOT"} } },
+false,
+true 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
